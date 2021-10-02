@@ -10,6 +10,7 @@ from homeassistant.components.fan import (
     SPEED_MEDIUM,
     SPEED_OFF,
     SUPPORT_OSCILLATE,
+    SUPPORT_DIRECTION,
     SUPPORT_SET_SPEED,
     FanEntity,
 )
@@ -17,6 +18,7 @@ from homeassistant.components.fan import (
 from .common import LocalTuyaEntity, async_setup_entry
 from .const import (
     CONF_FAN_OSCILLATING_CONTROL,
+    CONF_FAN_DIRECTION,
     CONF_FAN_SPEED_CONTROL,
     CONF_FAN_SPEED_HIGH,
     CONF_FAN_SPEED_LOW,
@@ -31,6 +33,7 @@ def flow_schema(dps):
     return {
         vol.Optional(CONF_FAN_SPEED_CONTROL): vol.In(dps),
         vol.Optional(CONF_FAN_OSCILLATING_CONTROL): vol.In(dps),
+        vol.Optional(CONF_FAN_DIRECTION): vol.In(dps),
         vol.Optional(CONF_FAN_SPEED_LOW, default=SPEED_LOW): vol.In(
             [SPEED_LOW, "1", "2", "small"]
         ),
@@ -38,7 +41,7 @@ def flow_schema(dps):
             [SPEED_MEDIUM, "mid", "2", "3"]
         ),
         vol.Optional(CONF_FAN_SPEED_HIGH, default=SPEED_HIGH): vol.In(
-            [SPEED_HIGH, "auto", "3", "4", "large", "big"]
+            [SPEED_HIGH, "auto", "3", "4", "5", "6", "large", "big"]
         ),
     }
 
