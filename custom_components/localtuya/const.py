@@ -33,6 +33,7 @@ CONF_SPAN_TIME = "span_time"
 
 # fan
 CONF_FAN_SPEED_CONTROL = "fan_speed_control"
+CONF_FAN_DIRECTION = "fan_direction"
 CONF_FAN_OSCILLATING_CONTROL = "fan_oscillating_control"
 CONF_FAN_SPEED_LOW = "fan_speed_low"
 CONF_FAN_SPEED_MEDIUM = "fan_speed_medium"
