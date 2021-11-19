@@ -1,13 +1,13 @@
 {
   "domain": "localtuya",
   "name": "LocalTuya integration",
-  "version": "3.2.1",
-  "documentation": "https://github.com/rospogrigio/localtuya/",
+  "version": "3.2.1.1-beta",
+  "documentation": "https://github.com/darek-margas/localtuya/",
   "dependencies": [],
   "codeowners": [
-    "@rospogrigio", "@postlund"
+    "@rospogrigio", "@postlund", "@darek-margas"
   ],
-  "issue_tracker": "https://github.com/rospogrigio/localtuya/issues",
+  "issue_tracker": "https://github.com/darek-margas/localtuya/issues",
   "requirements": [],
   "config_flow": true,
   "iot_class": "local_push"
