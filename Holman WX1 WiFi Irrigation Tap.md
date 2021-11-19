@@ -10,7 +10,7 @@ I tested it as far, as I could, and so far:
 - It does work on tap
 - cid shortcut works with multiple devices on the same IP - tested with socket and tap
 - So far it did not appear as breaking change for devices without gateway. While cid is added in commands payload, my Arlec fan hapilly ignores it and executes command.
-
+```
 DPS map:
 { dps:
    { '101': 0,    // temperature
@@ -30,12 +30,12 @@ DPS map:
      '125': false, // pause due to high soil moisture
      '127': 'HOL9-018-023-000-000' },
   cid: '131' }
-
+```
 CID can be found by quering Tuya API (I use tuya-cli), mine is 131 for tap, 13B for socket. I believe all may have the same, please let me know what you found.
 Timer countdown counts down as it goes but gains back initial position after stop.
 
 Sample yaml config (I don't like clicking):
-
+```
 localtuya:
   - host: 192.0.2.1
     device_id: '13B'
@@ -80,4 +80,4 @@ localtuya:
       - platform: binary_sensor
         friendly_name: "Postponed due to moisture"
         id: 125
-
+```
