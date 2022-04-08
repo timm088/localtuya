@@ -4,10 +4,7 @@ from functools import partial
 
 import voluptuous as vol
 from homeassistant.components.number import DOMAIN, NumberEntity
-from homeassistant.const import (
-    CONF_DEVICE_CLASS,
-    STATE_UNKNOWN,
-)
+from homeassistant.const import CONF_DEVICE_CLASS, STATE_UNKNOWN
 
 from .common import LocalTuyaEntity, async_setup_entry
 
@@ -19,14 +16,17 @@ CONF_MAX_VALUE = "max_value"
 DEFAULT_MIN = 0
 DEFAULT_MAX = 100000
 
+
 def flow_schema(dps):
-#    """Return schema used in config flow."""
+    """Return schema used in config flow."""
     return {
         vol.Optional(CONF_MIN_VALUE, default=DEFAULT_MIN): vol.All(
-            vol.Coerce(float), vol.Range(min=-1000000.0, max=1000000.0),
+            vol.Coerce(float),
+            vol.Range(min=-1000000.0, max=1000000.0),
         ),
         vol.Required(CONF_MAX_VALUE, default=DEFAULT_MAX): vol.All(
-            vol.Coerce(float), vol.Range(min=-1000000.0, max=1000000.0),
+            vol.Coerce(float),
+            vol.Range(min=-1000000.0, max=1000000.0),
         ),
     }
 
@@ -45,11 +45,11 @@ class LocaltuyaNumber(LocalTuyaEntity, NumberEntity):
         super().__init__(device, config_entry, sensorid, _LOGGER, **kwargs)
         self._state = STATE_UNKNOWN
 
-        self._minValue = DEFAULT_MIN
-        if (CONF_MIN_VALUE in self._config):
-            self._minValue = self._config.get(CONF_MIN_VALUE)
+        self._min_value = DEFAULT_MIN
+        if CONF_MIN_VALUE in self._config:
+            self._min_value = self._config.get(CONF_MIN_VALUE)
 
-        self._maxValue = self._config.get(CONF_MAX_VALUE)
+        self._max_value = self._config.get(CONF_MAX_VALUE)
 
     @property
     def value(self) -> float:
@@ -59,13 +59,12 @@ class LocaltuyaNumber(LocalTuyaEntity, NumberEntity):
     @property
     def min_value(self) -> float:
         """Return the minimum value."""
-        
-        return self._minValue
+        return self._min_value
 
     @property
     def max_value(self) -> float:
         """Return the maximum value."""
-        return self._maxValue
+        return self._max_value
 
     @property
     def device_class(self):
@@ -75,7 +74,6 @@ class LocaltuyaNumber(LocalTuyaEntity, NumberEntity):
     async def async_set_value(self, value: float) -> None:
         """Update the current value."""
         await self._device.set_dp(value, self._dp_id)
-
 
     def status_updated(self):
         """Device status was updated."""
