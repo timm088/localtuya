@@ -1,4 +1,5 @@
 Matching config section for ARLEC 6-speed bi-directional ceiling fan
+*** Removed as new fan implementarion changed it ***
 ```
   - host: x.x.x.x
     device_id: 
